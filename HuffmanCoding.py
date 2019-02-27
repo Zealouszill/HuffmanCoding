@@ -41,10 +41,18 @@ class BinTreeNode:
 
 class TreeCodec:
 
-    def __init__(self):
+    def __init__(self, root):
+        self._root = root
+
+    _root = BinTreeNode
+    _leaves = defaultdict(BinTreeNode)
+
+    def encode(self):
         pass
 
-    root = BinTreeNode
+    def decode(bitsList, hashables):
+        pass
+
 
 
 def convertSetenceToFrequencyList(sentence):
@@ -67,27 +75,6 @@ def convertSetenceToFrequencyList(sentence):
         counter += 1
 
     return frequencyList
-
-# def convertSetenceToFrequencyList(sentence):
-#
-#     tempFrequencyList = defaultdict(int)
-#     frequencyList = defaultdict(list)
-#
-#     aSentence = sentence.lower()
-#
-#     counter = 0
-#
-#     for w in aSentence:
-#         tempFrequencyList[w] += 1
-#         # print("printing", w , tempFrequencyList[w])
-#
-#     for w in tempFrequencyList:
-#         frequencyList[counter].extend([w, tempFrequencyList[w]])
-#         # print("printing this", w, frequencyList[counter])
-#         counter += 1
-#
-#     return frequencyList
-
 
 
 ##############################################################
