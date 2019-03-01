@@ -8,7 +8,6 @@ Created on Wed Feb 27 10:36:29 2019
 from boltons.queueutils import PriorityQueue
 from boltons.queueutils import SortedPriorityQueue
 from collections import defaultdict
-from enum import Enum
 
 
 """
@@ -24,25 +23,6 @@ to get the path for that node.
 
 """
 
-# class Stack:
-#      def __init__(self):
-#          self.items = []
-#
-#      def isEmpty(self):
-#          return self.items == []
-#
-#      def push(self, item):
-#          self.items.append(item)
-#
-#      def pop(self):
-#          return self.items.pop()
-#
-#      def peek(self):
-#          return self.items[len(self.items)-1]
-#
-#      def size(self):
-#          return len(self.items)
-
 
 class BinTreeNode:
 
@@ -57,7 +37,7 @@ class BinTreeNode:
     def leafNodes(self):
 
         if self._leftChild is None and self._rightChild is None:
-            yield self
+            yield self._data, self._frequency
         else:
             yield from self._leftChild.leafNodes()
             yield from self._rightChild.leafNodes()
@@ -77,12 +57,19 @@ class TreeCodec:
 
     def __init__(self, root):
         self._root = root
-        self._leaves = dict(BinTreeNode)
+        self._leaves = dict(root.leafNodes())
 
-    def encode(self):
-        pass
+        print("Leave Nodes", self._leaves)
 
-    def decode(bitsList, hashables):
+
+    def encode(self, symbols):
+
+        symbolsTable = []
+
+        for node in self._leaves:
+            symbolsTable.append[self._leaves[node]]
+
+    def decode(self, bitsList,):
         pass
 
 
@@ -110,94 +97,26 @@ def convertSetenceToFrequencyList(sentence):
 
 
 def createFrequencyTree(frequencyList):
-    
-    lowestFreqency = BinTreeNode
-    secondLowestFreqency = BinTreeNode
-    
+
     pq = PriorityQueue(priority_key=lambda p: p)
-    lowestFrequency = frequencyList[0]
-
-
-    # counter = 0
-
-    # for w in frequencyList:
-    #     print("This is w:", w)
-    #     if frequencyList[w]._frequency < lowestFrequency._frequency:
-    #         secondLowestFrequency = lowestFrequency
-    #         lowestFrequency = frequencyList[counter]
-    #         counter += 1
-
-
-
-
-    # CHange w for node and use frequencyList.values()
 
     for w in frequencyList:
         pq.add(frequencyList[w], frequencyList[w]._frequency)
-        #pq.add(frequencyList[w])
-
-    # print("Now gunna pop")
-    # print(pq.pop()._data)
-    # print(pq.pop()._data)
-    # print(pq.pop()._data)
-    # print(pq.pop()._data)
-
-
-
-    counter = 0
-
-
 
     while len(pq) > 1:
-    # while counter < 2*len(frequencyList)-1:
-    # while counter < 2:
-
-
 
         i = pq.pop()
         j = pq.pop()
-
-
 
         tempParentNode = BinTreeNode(frequency=i._frequency + j._frequency, leftChild=i, rightChild=j)
 
         i._parentNode = tempParentNode
         j._parentNode = tempParentNode
 
-
         pq.add(tempParentNode, tempParentNode._frequency)
 
+    return pq.pop()
 
-
-    counter += 1
-
-    i = pq.pop()
-
-    return i
-
-def printOutContents(itemsToPrint):
-
-    counter = 0
-
-    while counter < len(itemsToPrint):
-        print("Items to print", itemsToPrint)
-        counter += 1
-
-def theStackMaker(priorityQueue):
-
-    stack = []
-    counter = 0
-
-    while counter < len(priorityQueue):
-        stack.append(priorityQueue.pop())
-
-    return stack
-
-def traverseTree(tree):
-
-    for w in len(tree):
-        print("This is the tree:", w, tree[w]._data)
-        print("This is the node frequency:", w, tree[w].frequency)
 
 
 
@@ -205,7 +124,21 @@ def traverseTree(tree):
 #                            Tests                           #
 ##############################################################
 
+def test_encoding():
 
+
+
+    aSentence = "haaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+
+    frequencyList = convertSetenceToFrequencyList(aSentence)
+
+    rootNode = createFrequencyTree(frequencyList)
+
+    theCodec = TreeCodec(root = rootNode)
+
+
+
+    # assert theCodec == 1
 
 def test_CreateFrequencyTree():
 
