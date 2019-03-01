@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="679615da-fee7-4173-a29e-e9959a9b5c18" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HuffmanCoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/HuffmanCoding.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +17,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HuffmanCoding.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1156">
-                  <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+                <state relative-caret-position="116">
+                  <caret line="151" column="26" lean-forward="true" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
                   <folding>
                     <element signature="e#95#139#0" expanded="true" />
                   </folding>
@@ -174,8 +173,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HuffmanCoding.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1156">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        <state relative-caret-position="116">
+          <caret line="151" column="26" lean-forward="true" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
           <folding>
             <element signature="e#95#139#0" expanded="true" />
           </folding>

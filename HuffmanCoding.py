@@ -62,6 +62,14 @@ class BinTreeNode:
             yield from self._leftChild.leafNodes()
             yield from self._rightChild.leafNodes()
 
+    def isChild(self, inquire):
+
+        if inquire == self._leftChild:
+            return 0
+        if inquire == self._rightChild:
+            return 1
+
+        return None
 
 
 
@@ -106,26 +114,23 @@ def createFrequencyTree(frequencyList):
     lowestFreqency = BinTreeNode
     secondLowestFreqency = BinTreeNode
     
-    pq = PriorityQueue()
+    pq = PriorityQueue(priority_key=lambda p: p)
     lowestFrequency = frequencyList[0]
-    
-    stack = []
-
-    print("empty stack:", len(stack))
 
 
-    counter = 0
-    
+    # counter = 0
+
     # for w in frequencyList:
     #     print("This is w:", w)
     #     if frequencyList[w]._frequency < lowestFrequency._frequency:
     #         secondLowestFrequency = lowestFrequency
     #         lowestFrequency = frequencyList[counter]
     #         counter += 1
-    
 
 
-    print("The length of frequencyLists is:", range(1, len(frequencyList)))
+
+
+    # CHange w for node and use frequencyList.values()
 
     for w in frequencyList:
         pq.add(frequencyList[w], frequencyList[w]._frequency)
@@ -138,49 +143,37 @@ def createFrequencyTree(frequencyList):
     # print(pq.pop()._data)
 
 
-    stack = theStackMaker(pq)
 
     counter = 0
 
-    print("The length of the stack is:", len(stack))
 
-    while len(stack) != 0:
+
+    while len(pq) > 1:
     # while counter < 2*len(frequencyList)-1:
     # while counter < 2:
 
-        if len(stack) == 1:
-            i = stack.pop()
 
-            print("This is the tree", i._frequency)
-            print("This is the tree", i._leftChild._frequency)
-            print("This is the tree", i._rightChild._frequency)
-            print("This is the tree", i._leftChild._parentNode._frequency)
 
-            return i
-
-        else:
-            i = stack.pop()
-            j = stack.pop()
+        i = pq.pop()
+        j = pq.pop()
 
 
 
-            tempParentNode = BinTreeNode(i._frequency + j._frequency, i._frequency + j._frequency, None, i, j)
+        tempParentNode = BinTreeNode(frequency=i._frequency + j._frequency, leftChild=i, rightChild=j)
 
-            i._parentNode = tempParentNode
-            j._parentNode = tempParentNode
+        i._parentNode = tempParentNode
+        j._parentNode = tempParentNode
 
-            pq.add(tempParentNode, tempParentNode._frequency)
 
-            printOutContents(stack)
+        pq.add(tempParentNode, tempParentNode._frequency)
 
-            stack = theStackMaker(pq)
+
 
     counter += 1
 
+    i = pq.pop()
 
-
-
-    return stack.pop()._frequency
+    return i
 
 def printOutContents(itemsToPrint):
 
@@ -217,7 +210,8 @@ def traverseTree(tree):
 def test_CreateFrequencyTree():
 
     # aSentence = "Hello how can I help you"
-    aSentence = "Hello"
+    # aSentence = "Hello"
+    aSentence = "haaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 
     frequencyList = convertSetenceToFrequencyList(aSentence)
 
@@ -225,8 +219,16 @@ def test_CreateFrequencyTree():
 
     # traverseTree(TreeCodec)
 
-    assert TreeCodec._data == 5
-    assert TreeCodec._frequency == 5
+    assert TreeCodec._frequency == 111
+    assert TreeCodec._leftChild._frequency == 11
+    assert TreeCodec._leftChild._leftChild._frequency == 1
+    assert TreeCodec._leftChild._rightChild._frequency == 10
+    assert TreeCodec._rightChild._frequency == 100
+
+
+
+
+
 
 
 def test_SentenceConversion():
